@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Class-Path: lib/javacsv-2.0.jar 
+ lib/jetty-server-7.5.1.v20110908.jar 
+ lib/jetty-continuation-7.5.1.v20110908.jar 
+ lib/jetty-http-7.5.1.v20110908.jar 
+ lib/jetty-io-7.5.1.v20110908.jar 
+ lib/jetty-webapp-7.5.1.v20110908.jar 
+ lib/jetty-xml-7.5.1.v20110908.jar 
+ lib/jetty-util-7.5.1.v20110908.jar 
+ lib/jetty-servlet-7.5.1.v20110908.jar 
+ lib/jetty-security-7.5.1.v20110908.jar
+

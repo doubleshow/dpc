@@ -1,0 +1,85 @@
+main(title,body) ::= <<
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>$title$</title>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<header>
+			<h1>$title$</h1>
+		</header>
+		<article>
+		$body$
+		</article>
+	</body>
+</html>
+>>
+
+search(docs, searchOpts, messages, pages, currentPage, currentQuery) ::= <<
+	$searchForm(searchOpts)$
+	<div class="messages">
+		$messages:message()$
+	</div>
+	$paginatorr(pages, currentPage, currentQuery)$
+	$documentList(docs)$
+>>
+
+searchForm(opts) ::= <<
+<form>
+	query:<input type="text" name="q" value="$opts.q$"/>
+	all:<input type="radio" name="mode" value="all" $if(opts.all)$checked="checked"$endif$/>
+	custom:<input type="radio" name="mode" value="custom" $if(opts.all)$ $else$checked="checked"$endif$/>
+	title:<input type="checkbox" name="f_title" $if(opts.f_title)$checked="true"$endif$/>
+	description:<input type="checkbox" name="f_description" $if(opts.f_description)$checked="true"$endif$/>
+	categories:<input type="checkbox" name="f_categories" $if(opts.f_categories)$checked="true"$endif$/>
+	comment:<input type="checkbox" name="f_comment" $if(opts.f_comment)$checked="true"$endif$/>
+</form>
+>>
+
+
+paginatorr(pages, currentPage, currentQuery) ::= <<
+<div class="paginator">
+	$pages:{p | <a href="?$currentQuery$&p=$p$">$p$</a> }$
+</div>
+>>
+
+
+documentList(docs) ::= <<
+<table>
+	<tbody>
+		$docs:{doc | 
+<tr>
+	<td>$doc.id$</td>
+	<td>$doc.score$</td>
+	<td><a href="$showDocUrl(doc.docId)$">$doc.title$</a></td>
+</tr>
+}$	
+	</tbody>
+</table>
+>>
+
+documentDetails(doc) ::= <<
+<div class="documentDetails">
+	<p><b>Id:</b> $doc.id$</p>
+	<p><b>Title:</b> $doc.title$</p>
+	<p><b>Description:</b> $doc.description$</p>
+	<p><b>categories:</b> $doc.categories$</p>
+	<p><b>Comment:</b> $doc.comment$</p>
+</div>
+>>
+
+documentDetails_ajax(doc, callback) ::= <<
+$if(callback)$
+$callback$(
+$endif$
+{ docId: "$doc.docId$", id: "$doc.id$", title: "$doc.title$", description: "$doc.description$", comment: "$doc.comment$" }
+$if(callback)$
+);
+$endif$
+>>
+
+message(x) ::= "<div class=\"message\">$x$</div>"
+
+showDocUrl(docId) ::= "?showDocId=$docId$"
+
