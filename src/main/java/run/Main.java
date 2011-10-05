@@ -63,6 +63,8 @@ public class Main {
 		System.out.println("-q <query> (activates query mode, all the arguments after it are treated as part of query)");
 		System.out.println("-st use stemmer [default: " + useStemmer + "]");
 		System.out.println("-pq nicely print parsed query [default: " + printQuery + "]");
+		System.out.println("-et exclude title [default: " + excludeTitle + "]");
+		System.out.println("-ec exclude comment [default: " + excludeComment + "]");
 	}
 
 	static String index = Dpc.DEFAULT_INDEX, docs = Dpc.DEFAULT_DOCS, host = "localhost";
@@ -71,7 +73,8 @@ public class Main {
 	static String outputFile = "-", query = null;
 	static int resultsNum = 10;
 	static boolean useStemmer = false, printQuery = false;
-
+	static boolean excludeTitle = false;
+	static boolean excludeComment = false;
 	// for testing purpose, we can specify war/directory location for server mode
 	static final String P_WAR_FILE = "warFile";
 
@@ -126,6 +129,10 @@ public class Main {
 				useStemmer = true;
 			} else if (v.equals("-pq")) {
 				printQuery = true;
+			} else if (v.equals("-ec")) {
+				excludeComment = true;
+			} else if (v.equals("-et")) {
+				excludeTitle = true;
 			}
 		}
 		if (createIndex || updateIndex) {
@@ -146,7 +153,7 @@ public class Main {
 				return;
 			}
 			System.out.println("making query '" + query + "'");
-			query(index, query, resultsNum, outputFile);
+			query(index, query, resultsNum, outputFile, excludeComment, excludeTitle);
 			return;
 		}
 		printHelp();
@@ -252,13 +259,18 @@ public class Main {
 		System.out.println(String.format("indexed %d in %.3f seconds", num, ((float) (System.currentTimeMillis() - time)) / 1000));
 	}
 
-	static void query(String indexPath, String query, int resultsNum, String outputFile) throws DpcDaoException, FileNotFoundException {
+	static void query(String indexPath, String query, int resultsNum, String outputFile, boolean excludeComment, boolean excludeTitle) throws DpcDaoException, FileNotFoundException {
 		DpcDao dao = new DpcDaoImpl(indexPath);
-		DpcSearchOpts search = new SearchOptsImpl(query, true, false, false, false, false, 0, resultsNum);
+		DpcSearchOpts search;
+		if (excludeComment || excludeTitle){
+			search = new SearchOptsImpl(query, false, !excludeTitle, true, true, !excludeComment, 0, resultsNum);
+		}else{
+			search = new SearchOptsImpl(query, true, false, false, false, false, 0, resultsNum);
+		}
 		DpcSearchResult result = dao.getTop(search);
 		PrintStream out = "-".equals(outputFile) ? System.out : new PrintStream(outputFile);
 		for (DpcDoc doc : result.getDocs())
-			out.println(doc.getId() + " " + doc.getScore());
+			out.println(doc.getId() + " " + doc.getScore() + " " + doc.getTitle());
 	}
 
 	static void printQueryToStdout(String queryString, boolean useStemmer) throws ParseException {
