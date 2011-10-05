@@ -33,19 +33,19 @@ import org.apache.lucene.search.WildcardQuery;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.doubleshow.lucene_web.Dpc;
+import org.doubleshow.lucene_web.SearchOptsImpl;
+import org.doubleshow.lucene_web.model.DpcDao;
+import org.doubleshow.lucene_web.model.DpcDaoException;
+import org.doubleshow.lucene_web.model.DpcDoc;
+import org.doubleshow.lucene_web.model.DpcSearchOpts;
+import org.doubleshow.lucene_web.model.DpcSearchResult;
+import org.doubleshow.lucene_web.model.impl.DpcDaoImpl;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.bio.SocketConnector;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import com.csvreader.CsvReader;
-import com.kactech.lucene_web.Dpc;
-import com.kactech.lucene_web.SearchOptsImpl;
-import com.kactech.lucene_web.model.DpcDao;
-import com.kactech.lucene_web.model.DpcDaoException;
-import com.kactech.lucene_web.model.DpcDoc;
-import com.kactech.lucene_web.model.DpcSearchOpts;
-import com.kactech.lucene_web.model.DpcSearchResult;
-import com.kactech.lucene_web.model.impl.DpcDaoImpl;
 
 public class Main {
 	static void printHelp() {

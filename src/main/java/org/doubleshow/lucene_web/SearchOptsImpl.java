@@ -1,6 +1,6 @@
-package com.kactech.lucene_web;
+package org.doubleshow.lucene_web;
 
-import com.kactech.lucene_web.model.DpcSearchOpts;
+import org.doubleshow.lucene_web.model.DpcSearchOpts;
 
 public class SearchOptsImpl implements DpcSearchOpts {
 	private String q;

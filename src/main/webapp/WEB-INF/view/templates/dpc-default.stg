@@ -50,7 +50,7 @@ documentList(docs) ::= <<
 	<tbody>
 		$docs:{doc | 
 <tr>
-	<td>$doc.id$</td>
+	<td><a href="http://www.dpchallenge.com/image.php?IMAGE_ID=$doc.id$">$doc.id$</a></td>
 	<td>$doc.score$</td>
 	<td><a href="$showDocUrl(doc.docId)$">$doc.title$</a></td>
 </tr>

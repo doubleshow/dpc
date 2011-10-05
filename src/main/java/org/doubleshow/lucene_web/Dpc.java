@@ -1,4 +1,4 @@
-package com.kactech.lucene_web;
+package org.doubleshow.lucene_web;
 
 public interface Dpc {
 	static final String F_TEXT = "text";

@@ -1,4 +1,4 @@
-package com.kactech.lucene_web;
+package org.doubleshow.lucene_web;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.doubleshow.lucene_web.model.DpcDao;
+import org.doubleshow.lucene_web.model.DpcDaoException;
+import org.doubleshow.lucene_web.model.DpcDoc;
+import org.doubleshow.lucene_web.model.DpcSearchResult;
+import org.doubleshow.lucene_web.model.impl.DpcDaoImpl;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroupFile;
 
-import com.kactech.lucene_web.model.DpcDao;
-import com.kactech.lucene_web.model.DpcDaoException;
-import com.kactech.lucene_web.model.DpcDoc;
-import com.kactech.lucene_web.model.DpcSearchResult;
-import com.kactech.lucene_web.model.impl.DpcDaoImpl;
 
 public class Servlet1 extends HttpServlet {
 	// parameter names

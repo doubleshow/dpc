@@ -1,4 +1,4 @@
-package com.kactech.lucene_web.model;
+package org.doubleshow.lucene_web.model;
 
 public interface DpcDoc {
 

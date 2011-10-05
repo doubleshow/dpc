@@ -1,6 +1,6 @@
-package com.kactech.lucene_web.model.impl;
+package org.doubleshow.lucene_web.model.impl;
 
-import com.kactech.lucene_web.model.DpcDoc;
+import org.doubleshow.lucene_web.model.DpcDoc;
 
 public class DpcDocImpl implements DpcDoc {
 	int docId;

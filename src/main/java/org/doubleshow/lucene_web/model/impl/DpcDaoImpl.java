@@ -1,4 +1,4 @@
-package com.kactech.lucene_web.model.impl;
+package org.doubleshow.lucene_web.model.impl;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,13 +22,13 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.doubleshow.lucene_web.Dpc;
+import org.doubleshow.lucene_web.model.DpcDao;
+import org.doubleshow.lucene_web.model.DpcDaoException;
+import org.doubleshow.lucene_web.model.DpcDoc;
+import org.doubleshow.lucene_web.model.DpcSearchOpts;
+import org.doubleshow.lucene_web.model.DpcSearchResult;
 
-import com.kactech.lucene_web.Dpc;
-import com.kactech.lucene_web.model.DpcDao;
-import com.kactech.lucene_web.model.DpcDaoException;
-import com.kactech.lucene_web.model.DpcDoc;
-import com.kactech.lucene_web.model.DpcSearchOpts;
-import com.kactech.lucene_web.model.DpcSearchResult;
 
 public class DpcDaoImpl implements DpcDao {
 	public static final Version LUCENE_VERSION = Version.LUCENE_31;

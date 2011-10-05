@@ -6,7 +6,7 @@
 	
 	<servlet>
 		<servlet-name>servlet1</servlet-name>
-		<servlet-class>com.kactech.lucene_web.Servlet1</servlet-class>
+		<servlet-class>org.doubleshow.lucene_web.Servlet1</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
