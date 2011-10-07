@@ -260,7 +260,7 @@ public class Main {
 	}
 
 	static void query(String indexPath, String query, int resultsNum, String outputFile, boolean excludeComment, boolean excludeTitle) throws DpcDaoException, FileNotFoundException {
-		DpcDao dao = new DpcDaoImpl(indexPath);
+		DpcDao dao = new DpcDaoImpl(indexPath, useStemmer);
 		DpcSearchOpts search;
 		if (excludeComment || excludeTitle){
 			search = new SearchOptsImpl(query, false, !excludeTitle, true, true, !excludeComment, 0, resultsNum);
